@@ -10,9 +10,8 @@ ENV	STEAMAPPID=2519830 \
 	STEAMBETAPASSWORD=__CHANGEME__ \
 	STEAMLOGIN=__CHANGEME__ \
 	DOTNETVERSION="10.0" \
-	USER=2000 \
-	HOMEDIR=/home/steam
-ENV	STEAMAPPDIR="${HOMEDIR}/${STEAMAPP}-headless"
+	HOMEDIR=/steam
+ENV	STEAMAPPDIR="/Install"
 
 # Prepare the basic environment
 RUN	set -x && \
@@ -35,24 +34,13 @@ ENV	LANG=en_GB.UTF-8
 # Fix the LetsEncrypt CA cert (is this still needed?)
 #RUN	sed -i 's#mozilla/DST_Root_CA_X3.crt#!mozilla/DST_Root_CA_X3.crt#' /etc/ca-certificates.conf && update-ca-certificates
 
-# Create user, install SteamCMD
-RUN	groupadd --gid ${USER} steam && \
-	useradd --home-dir ${HOMEDIR} \
-		--create-home \
-		--shell /bin/bash \
-		--comment "" \
-		--gid ${USER} \
-		--uid ${USER} \
-		steam && \
-	mkdir -p ${STEAMCMDDIR} ${STEAMAPPDIR} /Config /Logs /Scripts && \
+# install SteamCMD
+RUN mkdir -p ${STEAMCMDDIR} ${STEAMAPPDIR} /Config /Logs /Scripts && \
 	cd ${STEAMCMDDIR} && \
 	curl -sqL ${STEAMCMDURL} | tar zxfv - && \
 	chown -R ${USER}:${USER} ${STEAMCMDDIR} ${STEAMAPPDIR} /Config /Logs
 
 COPY	--chown=${USER}:${USER} --chmod=755 ./src/setup_resonite.sh ./src/start_resonite.sh /Scripts/
-
-# Switch to user
-USER	${USER}
 
 WORKDIR	${STEAMAPPDIR}
 
