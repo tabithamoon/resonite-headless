@@ -38,7 +38,6 @@ ENV	LANG=en_GB.UTF-8
 RUN mkdir -p ${STEAMCMDDIR} ${STEAMAPPDIR} /Config /Logs /Scripts && \
 	cd ${STEAMCMDDIR} && \
 	curl -sqL ${STEAMCMDURL} | tar zxfv - && \
-	chown -R ${USER}:${USER} ${STEAMCMDDIR} ${STEAMAPPDIR} /Config /Logs
 
 COPY	--chmod=755 ./src/setup_resonite.sh ./src/start_resonite.sh /Scripts/
 
