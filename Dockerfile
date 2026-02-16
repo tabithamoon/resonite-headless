@@ -17,7 +17,7 @@ ENV	STEAMAPPDIR="/Install"
 RUN	set -x && \
 	apt -y update && \
 	apt -y upgrade && \
-	apt -y install curl lib32gcc-s1 libfreetype6 libbrotli1 libicu76 && \
+	apt -y install curl lib32gcc-s1 libfreetype6 libbrotli1 libicu76 wget && \
 	rm -rf /var/lib/{apt,dpkg,cache}
 
 # Add locales
