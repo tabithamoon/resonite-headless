@@ -18,7 +18,7 @@ ${STEAMAPPDIR}/dotnet-install.sh --channel ${DOTNETVERSION} --runtime dotnet --i
 
 find ${STEAMAPPDIR}/Headless/Data/Assets -type f -atime +7 -delete
 find ${STEAMAPPDIR}/Headless/Cache -type f -atime +7 -delete
-find /Logs -type f -name *.log -atime +30 -delete
+find /Logs -type f -name '*.log' -atime +30 -delete
 mkdir -p Headless/Migrations
 
 mkdir -p ${STEAMAPPDIR}/Headless/Libraries ${STEAMAPPDIR}/Headless/rml_libs ${STEAMAPPDIR}/Headless/rml_mods ${STEAMAPPDIR}/Headless/rml_config
