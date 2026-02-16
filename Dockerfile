@@ -35,7 +35,7 @@ ENV	LANG=en_GB.UTF-8
 #RUN	sed -i 's#mozilla/DST_Root_CA_X3.crt#!mozilla/DST_Root_CA_X3.crt#' /etc/ca-certificates.conf && update-ca-certificates
 
 # install SteamCMD
-RUN mkdir -p ${STEAMCMDDIR} ${STEAMAPPDIR} /Config /Logs /Scripts /Install && \
+RUN mkdir -p ${STEAMCMDDIR} ${STEAMAPPDIR} /Config /Logs /Scripts && \
 	cd ${STEAMCMDDIR} && \
 	curl -sqL ${STEAMCMDURL} | tar zxfv -
 
