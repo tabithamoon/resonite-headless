@@ -40,7 +40,7 @@ RUN mkdir -p ${STEAMCMDDIR} ${STEAMAPPDIR} /Config /Logs /Scripts && \
 	curl -sqL ${STEAMCMDURL} | tar zxfv - && \
 	chown -R ${USER}:${USER} ${STEAMCMDDIR} ${STEAMAPPDIR} /Config /Logs
 
-COPY	--chown=${USER}:${USER} --chmod=755 ./src/setup_resonite.sh ./src/start_resonite.sh /Scripts/
+COPY	--chmod=755 ./src/setup_resonite.sh ./src/start_resonite.sh /Scripts/
 
 WORKDIR	${STEAMAPPDIR}
 
